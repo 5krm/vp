@@ -1,0 +1,679 @@
+{
+	"info": {
+		"_postman_id": "08d2224d-38e6-4dc4-8b6a-aabdf41c38d1",
+		"name": "VPN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36214045"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register Device",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "device_id",
+									"value": "123458",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/device_register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"device_register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Abu Motaleb",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "example@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "123456785",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "profile_image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "device_id",
+									"value": "123458",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/user_registration",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user_registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send OTP",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "example@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/send-otp",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"send-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify OTP",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "example@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "otp",
+									"value": "428186",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/verify-otp",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"verify-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "example@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "otp",
+									"value": "428186",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "123456789",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/password/reset",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"password",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "example@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "device_id",
+									"value": "123459",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/logout",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Abu Motaleb",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "example@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "123456785",
+									"type": "text"
+								},
+								{
+									"key": "profile_image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/user/update",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Servers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "379|HeDpyB7Ks0ZOoz3ouhF4rjP2cTEHgQYl2IxFdGBk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/servers",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"servers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Countries",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Charset",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/countries",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Device Token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "device_token",
+							"value": "55555",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/device-token/update",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"device-token",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Advertisement",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/advertisement",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"advertisement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pricings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/pricings",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"pricings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Settings",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "310|VwSb3oOQmFwAzK8zWjprCT6ojrGvdl1csGBhZSkt",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/settings",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"settings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Package Details",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "package_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/package-details/save",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"package-details",
+						"save"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "3|UQlG8f5uVxqE8QIinYTZiNT0YZDHbZ9H6pjwDzKy45f828ab",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

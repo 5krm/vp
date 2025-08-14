@@ -1,0 +1,275 @@
+/* Common CSS */
+.textWhite {
+    color: #fff;
+}
+
+.customButton {
+    color: #21272d !important;
+    background-color: #f5ff97 !important;
+    border-color: #f5ff97;
+}
+
+.customButtonDefault {
+    background-color: #21272d;
+    border: none;
+    color: #ffffff;
+}
+
+.customButton:hover {
+    color: #21272d !important;
+    background-color: #f5ff97 !important;
+    border-color: #0062cc;
+}
+
+/* Sidebar CSS */
+.main-sidebar .brand-text {
+    color: #f5ff97;
+    font-weight: bold;
+}
+
+aside.main-sidebar.sidebar-dark-primary.elevation-4 {
+    background-color: #21272d;
+}
+
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
+.sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #f5ff97;
+    color: #21272d;
+}
+
+li.nav-item .active>a {
+    background-color: #f5ff97;
+}
+
+/* Header CSS */
+.main-header.navbar.navbar-white {
+    background-color: #21272d;
+    border-bottom: #21272d;
+}
+
+.main-header .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.main-header .navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+/* Dashboard CSS */
+.content-wrapper {
+    background-color: #171c21;
+}
+
+.content .small-box {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 22px;
+    background-color: #21272d;
+}
+
+.content .small-box .icon-div {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.content .small-box .icon-div img {
+    height: 26px;
+    width: 26px;
+    z-index: 2;
+}
+
+.content .inner h3 {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.content .inner p {
+    color: #87888c;
+    margin: 0px;
+}
+
+.content .small-box.countries:hover {
+    background-color: #373555;
+}
+
+.content .small-box.servers:hover {
+    background-color: #314055;
+}
+
+.content .small-box.pricings:hover {
+    background-color: #384947;
+}
+
+.content .small-box.users:hover {
+    background-color: #314055;
+}
+
+.content .small-box.guest-users:hover {
+    background-color: #4b3f3b;
+}
+
+.content .small-box.pro-users:hover {
+    background-color: #4c4a3b;
+}
+
+.content .small-box.admin:hover {
+    background-color: #4c4a3b;
+}
+
+/* Datatable CSS */
+.content .card .card-header,
+.content .card .card-body {
+    background-color: #21272d;
+    color: #ffffff;
+}
+
+.dataTables_wrapper .dataTable thead th {
+    background-color: #21272d;
+    color: #ffffff;
+    border: none;
+}
+
+.dataTables_wrapper .dataTable tbody tr {
+    background-color: #171c21;
+    color: #ffffff;
+}
+
+.dataTables_wrapper .dataTable tbody tr:nth-child(even) {
+    background-color: #21272d;
+}
+
+/* Search Box */
+.dataTables_wrapper .dataTables_filter input {
+    background-color: #21272d;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    padding: 0.4rem;
+}
+
+/* Length Dropdown */
+.dataTables_wrapper .dataTables_length select {
+    background-color: #21272d;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    padding: 0.4rem;
+}
+
+/* Select2 dropdown styling */
+.select2-container .select2-selection--multiple {
+    background-color: #171c21;
+    color: #fff;
+    border: 1px solid #171c21;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #21272d;
+    border: 1px solid #171c21;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice:hover {
+    background-color: #171c21;
+}
+
+/* Table Borders */
+
+/* Modal CSS */
+.modal .modal-content {
+    background-color: #171c21;
+    color: #ffffff;
+}
+
+.modal .modal-header {
+    border-bottom: 1px solid #21272d;
+}
+
+.modal .modal-footer {
+    border-top: 1px solid #21272d;
+}
+
+.modal .modal-body input {
+    background-color: #21272d;
+    color: #ffffff;
+    border: 1px solid #343a40;
+}
+
+.modal .modal-body select {
+    background-color: #21272d;
+    color: #ffffff;
+    border: 1px solid #343a40;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+.modal .modal-body option {
+    background-color: #171c21;
+    color: #ffffff;
+}
+
+/* Add Form CSS */
+.content .card-body input,
+.content .card-body textarea {
+    background-color: #171c21;
+    color: #ffffff;
+    border: 1px solid #343a40;
+}
+
+.content .card-header select {
+    background-color: #171c21;
+    color: #ffffff;
+    border: 1px solid #343a40;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+.content .card-header option {
+    background-color: #21272d;
+    color: #ffffff;
+}
+
+.content .card-body select {
+    background-color: #171c21;
+    color: #ffffff;
+    border: 1px solid #343a40;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+.content .card-body option {
+    background-color: #21272d;
+    color: #ffffff;
+}
+
+.content .card-footer {
+    background-color: #21272d;
+}
+
+/* Dashboard, Login, Reset Password, Chagne Password Page CSS */
+/* .login-page {
+    background: #171c21;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center
+} */
+
+.login-box .card {
+    background: #21272d;
+    color: #ffffff;
+    border-radius: 8px;
+}
+
+.login-box .card input,
+.login-box .card .input-group-append .input-group-text {
+    background: #21272d;
+    border: 1px solid #3a3f47;
+    color: #ffffff;
+}
