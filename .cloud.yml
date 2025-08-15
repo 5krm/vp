@@ -7,6 +7,7 @@ build:
     - npm ci
     - npm run build
     - composer install --no-dev --optimize-autoloader
+    - php artisan config:cache
 
 # Environment variables
 environments:
@@ -18,11 +19,11 @@ environments:
       SESSION_DRIVER: database
       CACHE_DRIVER: database
       DB_CONNECTION: mysql
-      DB_HOST: mysql
+      DB_HOST: database.internal
       DB_PORT: 3306
       DB_DATABASE: main
-      DB_USERNAME: user
-      DB_PASSWORD: password
+      DB_USERNAME: main
+      DB_PASSWORD: ""
 
 # Web configuration
 web:
@@ -34,10 +35,15 @@ web:
       headers:
         Cache-Control: "public, immutable"
 
-# Database
-database:
-  type: mysql
-  version: 8.0
+# Services
+services:
+  database:
+    type: mysql:8.0
+    disk: 1024
+
+# Relationships
+relationships:
+  database: "database:mysql"
 
 # Storage
 storage:
