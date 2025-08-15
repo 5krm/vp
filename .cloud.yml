@@ -7,7 +7,7 @@ build:
     - npm ci
     - npm run build
     - composer install --no-dev --optimize-autoloader
-    - php artisan config:cache
+    - DB_CONNECTION=array php artisan config:cache
 
 # Environment variables
 environments:
