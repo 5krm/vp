@@ -17,6 +17,12 @@ environments:
       LOG_CHANNEL: stderr
       SESSION_DRIVER: database
       CACHE_DRIVER: database
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: main
+      DB_USERNAME: user
+      DB_PASSWORD: password
 
 # Web configuration
 web:
