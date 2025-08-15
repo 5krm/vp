@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Skip database operations during build process when using array driver
+        if (config('database.default') === 'array') {
+            return;
+        }
+
         if (Schema::hasTable('email_configurations')) {
             $emailConfiguration = EmailConfiguration::first();
 
