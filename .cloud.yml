@@ -1,0 +1,42 @@
+# Laravel Cloud Configuration
+name: vpn-app
+
+# Build configuration
+build:
+  commands:
+    - npm ci
+    - npm run build
+    - composer install --no-dev --optimize-autoloader
+
+# Environment variables
+environments:
+  production:
+    variables:
+      APP_ENV: production
+      APP_DEBUG: false
+      LOG_CHANNEL: stderr
+      SESSION_DRIVER: database
+      CACHE_DRIVER: database
+
+# Web configuration
+web:
+  document_root: /public
+  passthru: /index.php
+  rules:
+    - if: "{path} matches '/build/.*'"
+      expires: 1y
+      headers:
+        Cache-Control: "public, immutable"
+
+# Database
+database:
+  type: mysql
+  version: 8.0
+
+# Storage
+storage:
+  - name: uploads
+    mount: /storage/app/public
+    source:
+      service: files
+      source_path: uploads
