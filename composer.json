@@ -10,7 +10,7 @@
     "require": {
         "php": "^8.2",
         "google/auth": "^1.42",
-        "laravel/framework": "^11.21",
+        "laravel/framework": "~11.20.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "spatie/laravel-permission": "^6.9",
