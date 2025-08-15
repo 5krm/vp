@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Skip database operations during build process when using array driver
-        if (config('database.default') === 'array') {
+        if (env('DB_CONNECTION') === 'array') {
             return;
         }
 
