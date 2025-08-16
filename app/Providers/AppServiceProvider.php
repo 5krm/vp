@@ -20,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
+     *
+     * This method configures mail settings from the database when available.
+     * It safely skips any database interaction during build/package discovery
+     * or whenever the database is not reachable to avoid deployment failures.
      */
     public function boot(): void
     {
@@ -28,27 +32,32 @@ class AppServiceProvider extends ServiceProvider
             return;
         }
 
-        if (Schema::hasTable('email_configurations')) {
-            $emailConfiguration = EmailConfiguration::first();
+        try {
+            if (Schema::hasTable('email_configurations')) {
+                $emailConfiguration = EmailConfiguration::first();
 
-            if($emailConfiguration){
-                $port = $emailConfiguration->mail_port !== null ? (int) $emailConfiguration->mail_port : null;
+                if ($emailConfiguration) {
+                    $port = $emailConfiguration->mail_port !== null ? (int) $emailConfiguration->mail_port : null;
 
-                $data = [
-                    'driver'            => $emailConfiguration->email_send_method,
-                    'host'              => $emailConfiguration->mail_host,
-                    'port'              => $port,
-                    'encryption'        => $emailConfiguration->mail_encryption_method ?: null,
-                    'username'          => $emailConfiguration->mail_username,
-                    'password'          => $emailConfiguration->mail_password,
-                    'from'              => [
-                        'address'=>$emailConfiguration->mail_from_address,
-                        'name'=>$emailConfiguration->mail_from_name,
-                    ]
-                ];
+                    $data = [
+                        'driver'     => $emailConfiguration->email_send_method,
+                        'host'       => $emailConfiguration->mail_host,
+                        'port'       => $port,
+                        'encryption' => $emailConfiguration->mail_encryption_method ?: null,
+                        'username'   => $emailConfiguration->mail_username,
+                        'password'   => $emailConfiguration->mail_password,
+                        'from'       => [
+                            'address' => $emailConfiguration->mail_from_address,
+                            'name'    => $emailConfiguration->mail_from_name,
+                        ],
+                    ];
 
-                Config::set('mail',$data);
+                    Config::set('mail', $data);
+                }
             }
+        } catch (\Throwable $e) {
+            // Swallow any DB-related errors during build or when DB is unavailable
+            // to ensure composer package discovery and config caching do not fail.
         }
     }
 }
