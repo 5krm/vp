@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\Settings\NotificationController as NotificationSe
 use App\Http\Controllers\Admin\Settings\AdvertisementController as AdvertisementSettingsController;
 use App\Http\Controllers\Admin\Settings\AppSettingController;
 
-Route::redirect('/', 'admin/dashboard');
+Route::redirect('/', 'admin/login');
 
 Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function() {
     // Dashboard Route
