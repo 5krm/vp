@@ -9,6 +9,11 @@ use DB;
 
 class DashboardController extends Controller
 {
+    /**
+     * Show the admin dashboard (now accessible without manual login).
+     * Input: none
+     * Output: dashboard view with summary counters
+     */
     public function dashboard() {
         $data['header_title'] = "Dashboard";
 
@@ -21,8 +26,6 @@ class DashboardController extends Controller
         $data['admins'] = DB::table('admins')->count();
         $data['pages'] = DB::table('pages')->count();
         
-        if(Auth::guard('admin')->check()) {
-            return view('backend.admin.dashboard', $data);   
-        }
+        return view('backend.admin.dashboard', $data);
     }
 }
