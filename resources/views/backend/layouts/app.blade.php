@@ -24,6 +24,7 @@
     <!-- Navbar -->
     @if(
         !request()->routeIs('admin.loginView') && 
+        !request()->routeIs('admin.registerView') && 
         !request()->routeIs('admin.password.forget') && 
         !request()->routeIs('admin.password.reset')
       )
@@ -33,6 +34,7 @@
     <!-- Sidebar -->
     @if(
         !request()->routeIs('admin.loginView') && 
+        !request()->routeIs('admin.registerView') && 
         !request()->routeIs('admin.password.forget') && 
         !request()->routeIs('admin.password.reset')  
     )
@@ -44,6 +46,7 @@
     <!-- Main Footer -->
     @if(
         !request()->routeIs('admin.loginView') && 
+        !request()->routeIs('admin.registerView') && 
         !request()->routeIs('admin.password.forget') && 
         !request()->routeIs('admin.password.reset') 
     )

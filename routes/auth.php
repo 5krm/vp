@@ -7,6 +7,11 @@ use App\Http\Controllers\Admin\Auth\AuthController;
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/login', [AuthController::class, 'loginView'])->name('loginView');    
     Route::post('/login', [AuthController::class, 'login'])->name('login'); 
+
+    // Register routes
+    Route::get('/register', [AuthController::class, 'registerView'])->name('registerView');
+    Route::post('/register', [AuthController::class, 'register'])->name('register');
+
     Route::get('/password/forget', [AuthController::class, 'forgetPasswordView'])->name('password.forget');   
     Route::post('/password/email', [AuthController::class, 'sendResetPasswordEmail'])->name('password.email');
     Route::get('/password/reset/{token}', [AuthController::class, 'resetPasswordView'])->name('password.reset');   
