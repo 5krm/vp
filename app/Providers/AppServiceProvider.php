@@ -43,21 +43,29 @@ class AppServiceProvider extends ServiceProvider
 
                 if ($emailConfiguration) {
                     $port = $emailConfiguration->mail_port !== null ? (int) $emailConfiguration->mail_port : null;
+                    $transport = $emailConfiguration->email_send_method ?: 'smtp';
 
-                    $data = [
-                        'driver'     => $emailConfiguration->email_send_method,
-                        'host'       => $emailConfiguration->mail_host,
-                        'port'       => $port,
-                        'encryption' => $emailConfiguration->mail_encryption_method ?: null,
-                        'username'   => $emailConfiguration->mail_username,
-                        'password'   => $emailConfiguration->mail_password,
-                        'from'       => [
-                            'address' => $emailConfiguration->mail_from_address,
-                            'name'    => $emailConfiguration->mail_from_name,
-                        ],
-                    ];
+                    // Set the default mailer
+                    Config::set('mail.default', $transport);
 
-                    Config::set('mail', $data);
+                    // Configure the mailer based on the transport type
+                    if (in_array($transport, ['smtp', 'sendmail', 'ses', 'postmark', 'resend'])) {
+                        Config::set("mail.mailers.{$transport}", [
+                            'transport'  => $transport,
+                            'host'       => $emailConfiguration->mail_host,
+                            'port'       => $port,
+                            'encryption' => $emailConfiguration->mail_encryption_method ?: null,
+                            'username'   => $emailConfiguration->mail_username,
+                            'password'   => $emailConfiguration->mail_password,
+                            'timeout'    => null,
+                        ]);
+                    }
+
+                    // Set global from address
+                    Config::set('mail.from', [
+                        'address' => $emailConfiguration->mail_from_address,
+                        'name'    => $emailConfiguration->mail_from_name,
+                    ]);
                 }
             }
         } catch (\Throwable $e) {

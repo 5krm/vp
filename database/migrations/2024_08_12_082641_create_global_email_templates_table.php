@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('global_email_templates', function (Blueprint $table) {
             $table->id();
-            $table->text('email_header')->default('');
+            $table->text('email_header')->nullable();
             $table->string('email_footer')->default('');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */

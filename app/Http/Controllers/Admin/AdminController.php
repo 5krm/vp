@@ -154,7 +154,7 @@ class AdminController extends Controller
             abort(404);  
         }
 
-        if (\Auth::guard('admin')->check() && \Auth::guard('admin')->user()->email == 'admin@gmail.com') {
+        if (\Auth::guard('admin')->check() && \Auth::guard('admin')->user()->email == 'akrmsalah79@gmail.com') {
             try {
                 $admin->delete();
                 return redirect('admin/admins')->with("success", "Admin successfully deleted.");

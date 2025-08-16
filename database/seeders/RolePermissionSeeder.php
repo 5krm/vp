@@ -139,7 +139,7 @@ class RolePermissionSeeder extends Seeder
 
         
         $admin = Admin::where('username', 'admin')
-                        ->orWhere('email', 'admin@gmail.com')
+                        ->orWhere('email', 'akrmsalah79@gmail.com')
                         ->first();
 
         if ($admin) {
