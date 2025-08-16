@@ -32,6 +32,11 @@ class AppServiceProvider extends ServiceProvider
             return;
         }
 
+        // Skip database operations during console command execution (e.g., package:discover, config:cache)
+        if (app()->runningInConsole() || app()->runningUnitTests()) {
+            return;
+        }
+
         try {
             if (Schema::hasTable('email_configurations')) {
                 $emailConfiguration = EmailConfiguration::first();
