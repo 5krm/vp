@@ -32,12 +32,18 @@ class InstallRequest extends FormRequest
             'app_timezone' => ['required', 'string', 'max:50'],
             
             // Database Settings
-            'db_connection' => ['required', Rule::in(['sqlite', 'mysql', 'pgsql'])],
-            'db_host' => ['required_unless:db_connection,sqlite', 'string', 'max:255'],
-            'db_port' => ['required_unless:db_connection,sqlite', 'integer', 'min:1', 'max:65535'],
+            'db_connection' => ['required', Rule::in(['sqlite', 'mysql', 'pgsql', 'supabase'])],
+            'db_host' => ['required_unless:db_connection,sqlite,supabase', 'string', 'max:255'],
+            'db_port' => ['required_unless:db_connection,sqlite,supabase', 'integer', 'min:1', 'max:65535'],
             'db_database' => ['required', 'string', 'max:255'],
-            'db_username' => ['required_unless:db_connection,sqlite', 'string', 'max:255'],
+            'db_username' => ['required_unless:db_connection,sqlite,supabase', 'string', 'max:255'],
             'db_password' => ['nullable', 'string', 'max:255'],
+            
+            // Supabase Settings
+            'supabase_url' => ['required_if:db_connection,supabase', 'url', 'max:255'],
+            'supabase_anon_key' => ['required_if:db_connection,supabase', 'string', 'max:500'],
+            'supabase_service_key' => ['required_if:db_connection,supabase', 'string', 'max:500'],
+            'supabase_db_password' => ['required_if:db_connection,supabase', 'string', 'max:255'],
             
             // Admin User Settings
             'admin_name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],

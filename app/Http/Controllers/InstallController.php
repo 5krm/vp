@@ -126,13 +126,40 @@ class InstallController extends Controller
             'APP_NAME' => $data['app_name'],
             'APP_URL' => $data['app_url'],
             'APP_TIMEZONE' => $data['timezone'],
-            'DB_CONNECTION' => $data['db_connection'],
-            'DB_HOST' => $data['db_host'] ?? '',
-            'DB_PORT' => $data['db_port'] ?? '',
-            'DB_DATABASE' => $data['db_database'],
-            'DB_USERNAME' => $data['db_username'] ?? '',
-            'DB_PASSWORD' => $data['db_password'] ?? '',
         ];
+        
+        // Handle database configuration based on connection type
+        if ($data['db_connection'] === 'supabase') {
+            // Configure for Supabase (PostgreSQL)
+            $supabaseUrl = $data['supabase_url'];
+            $parsedUrl = parse_url($supabaseUrl);
+            $host = $parsedUrl['host'] ?? '';
+            
+            $updates = array_merge($updates, [
+                'DB_CONNECTION' => 'pgsql',
+                'DB_HOST' => 'db.' . str_replace(['https://', 'http://'], '', $host),
+                'DB_PORT' => '5432',
+                'DB_DATABASE' => 'postgres',
+                'DB_USERNAME' => 'postgres',
+                'DB_PASSWORD' => $data['supabase_db_password'],
+                'DB_SSLMODE' => 'require',
+                'SUPABASE_URL' => $data['supabase_url'],
+                'SUPABASE_ANON_KEY' => $data['supabase_anon_key'],
+                'SUPABASE_SERVICE_ROLE_KEY' => $data['supabase_service_key'],
+                'VITE_SUPABASE_URL' => $data['supabase_url'],
+                'VITE_SUPABASE_ANON_KEY' => $data['supabase_anon_key'],
+            ]);
+        } else {
+            // Standard database configuration
+            $updates = array_merge($updates, [
+                'DB_CONNECTION' => $data['db_connection'],
+                'DB_HOST' => $data['db_host'] ?? '',
+                'DB_PORT' => $data['db_port'] ?? '',
+                'DB_DATABASE' => $data['db_database'],
+                'DB_USERNAME' => $data['db_username'] ?? '',
+                'DB_PASSWORD' => $data['db_password'] ?? '',
+            ]);
+        }
 
         foreach ($updates as $key => $value) {
             $pattern = "/^{$key}=.*/m";

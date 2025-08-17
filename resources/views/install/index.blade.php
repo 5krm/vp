@@ -249,6 +249,7 @@
                                     <option value="sqlite">SQLite (سهل ومناسب للبداية)</option>
                                     <option value="mysql">MySQL</option>
                                     <option value="pgsql">PostgreSQL</option>
+                                    <option value="supabase">Supabase (PostgreSQL في السحابة)</option>
                                 </select>
                             </div>
                             
@@ -271,10 +272,33 @@
                                 </div>
                             </div>
                             
+                            <div id="supabase-fields" style="display: none;">
+                                <div class="col-12 mb-3">
+                                    <label for="supabase_url" class="form-label">Supabase URL</label>
+                                    <input type="url" class="form-control" id="supabase_url" name="supabase_url" placeholder="https://your-project.supabase.co">
+                                    <small class="form-text text-muted">يمكنك العثور على هذا في لوحة تحكم Supabase > Settings > API</small>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="supabase_anon_key" class="form-label">Supabase Anon Key</label>
+                                    <input type="text" class="form-control" id="supabase_anon_key" name="supabase_anon_key" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+                                    <small class="form-text text-muted">المفتاح العام للوصول إلى Supabase</small>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="supabase_service_key" class="form-label">Supabase Service Role Key</label>
+                                    <input type="password" class="form-control" id="supabase_service_key" name="supabase_service_key" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+                                    <small class="form-text text-muted">المفتاح الخاص للعمليات الإدارية (احتفظ به سرياً)</small>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="supabase_db_password" class="form-label">كلمة مرور قاعدة البيانات</label>
+                                    <input type="password" class="form-control" id="supabase_db_password" name="supabase_db_password" placeholder="كلمة مرور قاعدة البيانات">
+                                    <small class="form-text text-muted">كلمة المرور التي حددتها عند إنشاء المشروع</small>
+                                </div>
+                            </div>
+                            
                             <div class="col-12 mb-3">
                                 <label for="db_database" class="form-label">اسم قاعدة البيانات</label>
                                 <input type="text" class="form-control" id="db_database" name="db_database" value="vpn_management" required>
-                                <small class="form-text text-muted">للـ SQLite: سيتم إنشاء ملف قاعدة البيانات تلقائياً</small>
+                                <small class="form-text text-muted">للـ SQLite: سيتم إنشاء ملف قاعدة البيانات تلقائياً | للـ Supabase: استخدم "postgres"</small>
                             </div>
                             
                             <div class="col-12">
@@ -335,17 +359,26 @@
             // Handle database connection type change
             $('#db_connection').change(function() {
                 const connection = $(this).val();
+                
+                // Hide all database-specific fields first
+                $('#mysql-fields, #supabase-fields').hide();
+                $('#db_host, #db_port, #db_username, #db_password').attr('required', false);
+                $('#supabase_url, #supabase_anon_key, #supabase_service_key, #supabase_db_password').attr('required', false);
+                
                 if (connection === 'mysql' || connection === 'pgsql') {
                     $('#mysql-fields').show();
                     $('#db_host, #db_port, #db_username').attr('required', true);
+                    $('#db_database').val('vpn_management');
                     if (connection === 'pgsql') {
                         $('#db_port').val('5432');
                     } else {
                         $('#db_port').val('3306');
                     }
+                } else if (connection === 'supabase') {
+                    $('#supabase-fields').show();
+                    $('#supabase_url, #supabase_anon_key, #supabase_service_key, #supabase_db_password').attr('required', true);
+                    $('#db_database').val('postgres');
                 } else {
-                    $('#mysql-fields').hide();
-                    $('#db_host, #db_port, #db_username, #db_password').attr('required', false);
                     $('#db_database').val('database/database.sqlite');
                 }
             });
