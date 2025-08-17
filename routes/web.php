@@ -13,17 +13,8 @@ use App\Http\Controllers\Admin\EmailSettingController;
 use App\Http\Controllers\Admin\Settings\NotificationController as NotificationSettingsController;
 use App\Http\Controllers\Admin\Settings\AdvertisementController as AdvertisementSettingsController;
 use App\Http\Controllers\Admin\Settings\AppSettingController;
-use App\Http\Controllers\InstallController;
-
-// Installation Routes (accessible only when app is not installed)
-Route::middleware(['check.installation', 'install.security'])->group(function () {
-    Route::get('/install', [InstallController::class, 'index'])->name('install.index');
-    Route::post('/install', [InstallController::class, 'install'])->name('install.process');
-    Route::post('/install/test-database', [InstallController::class, 'testDatabase'])->name('install.test.database');
-});
-
-// Main application routes (accessible only when app is installed)
-Route::middleware(['check.installation:installed'])->group(function () {
+// Main application routes
+Route::group(function () {
     Route::redirect('/', 'admin/login');
 
     Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function() {

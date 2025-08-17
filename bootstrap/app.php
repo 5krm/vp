@@ -4,8 +4,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\CheckAdmin;
-use App\Http\Middleware\CheckInstallation;
-use App\Http\Middleware\InstallationSecurity;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -20,9 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'admin' => CheckAdmin::class,
-            'check.installation' => CheckInstallation::class,
-            'install.security' => InstallationSecurity::class
+            'admin' => CheckAdmin::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
