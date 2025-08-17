@@ -18,7 +18,7 @@ use App\Http\Controllers\InstallController;
 // Installation Routes (accessible only when app is not installed)
 Route::middleware(['check.installation', 'install.security'])->group(function () {
     Route::get('/install', [InstallController::class, 'index'])->name('install.index');
-    Route::post('/install', [InstallController::class, 'process'])->name('install.process');
+    Route::post('/install', [InstallController::class, 'install'])->name('install.process');
     Route::post('/install/test-database', [InstallController::class, 'testDatabase'])->name('install.test.database');
 });
 
