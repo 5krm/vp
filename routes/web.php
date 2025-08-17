@@ -26,7 +26,7 @@ Route::middleware(['check.installation', 'install.security'])->group(function ()
 Route::middleware(['check.installation:installed'])->group(function () {
     Route::redirect('/', 'admin/login');
 
-Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function() {
+    Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function() {
     // Dashboard Route
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     
@@ -108,7 +108,7 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function() 
     Route::get('/settings/app', [AppSettingController::class, 'appSettings'])->name('settings.app'); 
     Route::post('/settings/app', [AppSettingController::class, 'updateAppSettings'])->name('settings.app.update'); 
 
-});
+    });
 });
 
 
